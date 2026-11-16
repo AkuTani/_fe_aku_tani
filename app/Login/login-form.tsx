@@ -1,6 +1,12 @@
 "use client";
 
-import { ArrowRight, KeyRound } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  AlertCircleIcon,
+  ArrowRight,
+  CheckCircle2Icon,
+  KeyRound,
+} from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -82,7 +88,11 @@ export default function LoginForm() {
             className="mt-4 text-sm text-red-600"
             role="alert"
           >
-            {error}
+            <Alert variant="destructive" className="max-w-full rounded-xl">
+              <AlertCircleIcon />
+              <AlertTitle>Gagal masuk</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
           </motion.p>
         ) : null}
         {success ? (
@@ -94,7 +104,11 @@ export default function LoginForm() {
             className="mt-4 text-sm text-[#4B6B00]"
             role="status"
           >
-            {success}
+            <Alert className="max-w-full">
+              <CheckCircle2Icon />
+              <AlertTitle>Berhasil masuk ke Aku Tani</AlertTitle>
+              <AlertDescription>{success}</AlertDescription>
+            </Alert>
           </motion.p>
         ) : null}
       </AnimatePresence>

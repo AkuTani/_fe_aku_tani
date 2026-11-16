@@ -1,6 +1,12 @@
 "use client";
 
-import { ArrowRight, KeyRound } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  AlertCircleIcon,
+  ArrowRight,
+  CheckCircle2Icon,
+  KeyRound,
+} from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -127,10 +133,14 @@ export default function RegisterForm() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="mt-4 text-sm text-red-600"
+            className="mt-4 text-sm text-red-600 rounded-xl"
             role="alert"
           >
-            {error}
+            <Alert variant="destructive" className="max-w-full rounded-xl">
+              <AlertCircleIcon />
+              <AlertTitle>Daftar gagal</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
           </motion.p>
         ) : null}
         {success ? (
@@ -142,7 +152,11 @@ export default function RegisterForm() {
             className="mt-4 text-sm text-[#4B6B00]"
             role="status"
           >
-            {success}
+            <Alert className="max-w-full">
+              <CheckCircle2Icon />
+              <AlertTitle>Daftar AkuTani Berhasil</AlertTitle>
+              <AlertDescription>{success}</AlertDescription>
+            </Alert>
           </motion.p>
         ) : null}
       </AnimatePresence>
