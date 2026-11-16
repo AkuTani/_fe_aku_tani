@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, KeyRound } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -71,26 +72,44 @@ export default function LoginForm() {
         Lupa kata sandi?
       </button>
 
-      {error ? (
-        <p className="mt-4 text-sm text-red-600" role="alert">
-          {error}
-        </p>
-      ) : null}
-      {success ? (
-        <p className="mt-4 text-sm text-[#4B6B00]" role="status">
-          {success}
-        </p>
-      ) : null}
+      <AnimatePresence mode="wait">
+        {error ? (
+          <motion.p
+            key="error"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="mt-4 text-sm text-red-600"
+            role="alert"
+          >
+            {error}
+          </motion.p>
+        ) : null}
+        {success ? (
+          <motion.p
+            key="success"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="mt-4 text-sm text-[#4B6B00]"
+            role="status"
+          >
+            {success}
+          </motion.p>
+        ) : null}
+      </AnimatePresence>
 
-      <button
+      <motion.button
         type="submit"
-        className="mt-auto flex w-full items-center justify-center gap-2 rounded-full bg-[#4B6B00] py-3.5 text-sm font-medium text-white hover:bg-[#3d5700]"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="mt-10 flex w-full items-center justify-center gap-2 rounded-full bg-[#4B6B00] py-3.5 text-sm font-medium text-white hover:bg-[#3d5700]"
       >
         Masuk ke Aku Tani <ArrowRight size={18} />
-      </button>
+      </motion.button>
 
       <p className="mt-4 text-center text-sm text-[#4B6B00]">
-        Belum punya akun petani?{" "}
+        Belum punya akun AkuTani?{" "}
         <Link href="/register" className="font-bold">
           Daftar Sekarang
         </Link>
