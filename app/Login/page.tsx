@@ -22,11 +22,8 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <main className="flex min-h-screen items-start justify-center bg-[#F5F5F3] px-6 py-10 text-[#1A1A1A] lg:items-center">
-      <div className="grid w-full max-w-[1100px] items-center gap-12 lg:grid-cols-[1fr_minmax(0,480px)]">
-        <MotionSection
-          from="left"
-          className="order-2 max-w-xl lg:order-1"
-        >
+      <div className="grid w-full max-w-[1000px] items-center gap-12 lg:grid-cols-[1fr_minmax(0,480px)]">
+        <MotionSection from="left" className="order-2 max-w-xl lg:order-1">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/80 px-4 py-1.5 text-[10px] font-semibold tracking-wide uppercase">
             <Zap size={14} /> Portal Masuk Aku Tani
           </span>
@@ -79,9 +76,9 @@ export default function LoginPage() {
               <div>
                 <h2 className="text-sm font-medium">Gunakan berkala</h2>
                 <p className="mt-1 text-xs leading-relaxed text-gray-600">
-                  Dapat digunakakan setiap hari untuk memantau kondisi lahan anda.
-                  Serta dapatkan rekomendasi waktu tanam kembali dari prakiraan
-                  cuaca BMKG.
+                  Dapat digunakakan setiap hari untuk memantau kondisi lahan
+                  anda. Serta dapatkan rekomendasi waktu tanam kembali dari
+                  prakiraan cuaca BMKG.
                 </p>
               </div>
             </MotionItem>

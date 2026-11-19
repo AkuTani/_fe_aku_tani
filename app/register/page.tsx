@@ -1,6 +1,5 @@
-import { LockKeyhole, MessagesSquare, ScanLine, Zap } from "lucide-react";
+import { MessagesSquare, ScanLine, Zap } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import {
   MotionItem,
   MotionSection,
@@ -16,33 +15,11 @@ export const metadata: Metadata = {
 export default function RegisterPage() {
   return (
     <main className="flex min-h-screen items-start justify-center bg-[#F5F5F3] px-6 py-10 text-[#1A1A1A] lg:items-center">
-      <div className="grid w-full max-w-[1100px] items-center gap-12 lg:grid-cols-[minmax(0,480px)_1fr]">
+      <div className="grid w-full max-w-[1000px] items-center gap-12 lg:grid-cols-[minmax(0,480px)_1fr]">
         <MotionSection
           immediate
           className="flex min-h-[600px] flex-col rounded-[32px] bg-white px-8 py-8 shadow-[0_20px_60px_rgba(0,0,0,0.06)] sm:px-10"
         >
-          <div className="flex items-center justify-between gap-4">
-            <Image
-              src="/logo.png"
-              alt="Aku Tani"
-              width={220}
-              height={220}
-              priority
-              className="h-14 w-auto object-contain"
-            />
-            <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#E4F0C8] px-4 py-1.5 text-[10px] font-semibold tracking-wide text-[#4B6B00] uppercase">
-              <LockKeyhole size={14} /> Portal Daftar AkuTani
-            </span>
-          </div>
-
-          <h1 className="mt-8 text-center text-2xl font-semibold text-center">
-            Daftar akun Aku Tani
-          </h1>
-          <p className="mt-2 text-center text-sm leading-relaxed text-gray-600 text-center">
-            Mulai pemantauan presisi lahan Anda secara gratis dalam hitungan
-            menit.
-          </p>
-
           <RegisterForm />
         </MotionSection>
 
