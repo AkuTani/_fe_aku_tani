@@ -1,10 +1,4 @@
-import {
-  LockKeyhole,
-  MapPin,
-  MessagesSquare,
-  ScanLine,
-  Zap,
-} from "lucide-react";
+import { LockKeyhole, MessagesSquare, ScanLine, Zap } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
@@ -13,6 +7,7 @@ import {
   MotionStagger,
 } from "../components/auth-motion";
 import LoginForm from "./login-form";
+import UserLocationLabel from "./user-location-label";
 
 export const metadata: Metadata = {
   title: "Masuk | Aku Tani",
@@ -56,9 +51,7 @@ export default function LoginPage() {
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FFF0A0] text-lg font-semibold text-[#E6B800]">
                   C
                 </div>
-                <span className="flex items-center gap-1 text-[10px] text-[#4B6B00]">
-                  <MapPin size={12} /> Tangerang Selatan
-                </span>
+                <UserLocationLabel />
               </div>
               <h2 className="mt-4 text-sm font-medium">
                 Telemetri Mikroklimat

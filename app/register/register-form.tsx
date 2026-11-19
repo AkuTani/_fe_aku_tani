@@ -20,7 +20,6 @@ import {
   MapPin,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { code } from "motion/react-client";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
