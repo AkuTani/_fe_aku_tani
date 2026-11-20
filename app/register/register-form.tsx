@@ -272,6 +272,8 @@ export default function RegisterForm() {
     setError("");
   }
 
+  console.log(villageId, adm4);
+
   return (
     <div className="flex w-full flex-1 flex-col">
       <div className="flex items-center justify-between gap-4">
