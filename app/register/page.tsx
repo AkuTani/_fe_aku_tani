@@ -1,5 +1,6 @@
 import { MessagesSquare, ScanLine, Zap } from "lucide-react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   MotionItem,
   MotionSection,
@@ -20,7 +21,9 @@ export default function RegisterPage() {
           immediate
           className="flex min-h-[600px] flex-col rounded-[32px] bg-white px-8 py-8 shadow-[0_20px_60px_rgba(0,0,0,0.06)] sm:px-10"
         >
-          <RegisterForm />
+          <Suspense fallback={<div className="min-h-[400px]" />}>
+            <RegisterForm />
+          </Suspense>
         </MotionSection>
 
         <MotionSection

@@ -6,7 +6,6 @@ import {
   fetchProvinces,
   fetchRegencies,
   fetchVillages,
-  toAdm4,
   type WilayahOption,
 } from "@/lib/wilayah";
 import {
@@ -140,6 +139,7 @@ export default function RegisterForm() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [adm4, setAdm4] = useState("");
+  const [adm4Label, setAdm4Label] = useState("");
 
   useEffect(() => {
     fetchProvinces()
@@ -225,10 +225,13 @@ export default function RegisterForm() {
       return;
     }
 
-    const code = toAdm4(villageId);
-    setAdm4(code);
+    if (!adm4) {
+      setError("Pilih kelurahan/desa untuk mendapatkan kode ADM4.");
+      return;
+    }
+
     setError("");
-    setSuccess(`Kode ADM4 lahan Anda: ${code}`);
+    setSuccess(`Kode ADM4 lahan Anda: ${adm4}`);
   }
 
   function changeProvince(value: string) {
@@ -237,6 +240,7 @@ export default function RegisterForm() {
     setDistrictId("");
     setVillageId("");
     setAdm4("");
+    setAdm4Label("");
   }
 
   function changeRegency(value: string) {
@@ -244,17 +248,28 @@ export default function RegisterForm() {
     setDistrictId("");
     setVillageId("");
     setAdm4("");
+    setAdm4Label("");
   }
 
   function changeDistrict(value: string) {
     setDistrictId(value);
     setVillageId("");
     setAdm4("");
+    setAdm4Label("");
   }
 
   function changeVillage(value: string) {
     setVillageId(value);
-    setAdm4(value ? toAdm4(value) : "");
+    setAdm4(value);
+    const wilayah = [
+      regencies.find((item) => item.id === regencyId)?.name,
+      districts.find((item) => item.id === districtId)?.name,
+      villages.find((item) => item.id === value)?.name,
+    ]
+      .filter(Boolean)
+      .join(" / ");
+    setAdm4Label(wilayah);
+    setError("");
   }
 
   return (
@@ -278,6 +293,7 @@ export default function RegisterForm() {
       {step === 1 ? (
         <form
           key="step-1"
+          method="post"
           onSubmit={handleAccountSubmit}
           className="mt-8 flex w-full flex-1 flex-col"
           noValidate
@@ -379,6 +395,7 @@ export default function RegisterForm() {
       ) : (
         <form
           key="step-2"
+          method="post"
           onSubmit={handleLocationSubmit}
           className="mt-8 flex w-full flex-1 flex-col"
           noValidate
@@ -461,6 +478,11 @@ export default function RegisterForm() {
           {adm4 ? (
             <p className="mt-4 rounded-xl bg-[#E4F0C8] px-4 py-3 text-sm text-[#4B6B00]">
               Kode ADM4: <span className="font-semibold">{adm4}</span>
+              {adm4Label ? (
+                <span className="mt-1 block text-xs text-[#4B6B00]/80">
+                  {adm4Label}
+                </span>
+              ) : null}
             </p>
           ) : null}
 
@@ -468,9 +490,10 @@ export default function RegisterForm() {
 
           <motion.button
             type="submit"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="mt-10 flex w-full items-center justify-center gap-2 rounded-full bg-[#4B6B00] py-3.5 text-sm font-medium text-white hover:bg-[#3d5700]"
+            disabled={!adm4}
+            whileHover={adm4 ? { scale: 1.02 } : undefined}
+            whileTap={adm4 ? { scale: 0.98 } : undefined}
+            className="mt-10 flex w-full items-center justify-center gap-2 rounded-full bg-[#4B6B00] py-3.5 text-sm font-medium text-white hover:bg-[#3d5700] disabled:cursor-not-allowed disabled:opacity-60"
           >
             Simpan & Masuk ke Dashboard <ArrowRight size={18} />
           </motion.button>
